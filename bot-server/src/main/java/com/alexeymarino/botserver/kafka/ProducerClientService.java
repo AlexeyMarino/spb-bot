@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class ProducerClientService {
     private final KafkaTemplate<String, Update> kafkaTemplate;
 
-    @Value("${topic.request}")
+    @Value("${topic.response}")
     private String topicRequest;
 
     public void produce(Update update) {
