@@ -1,11 +1,15 @@
 package com.alexeymarino.botserver.cache;
 
 import com.alexeymarino.botserver.botapi.BotState;
+import com.alexeymarino.botserver.domain.User;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserDataCache implements DataCache{
     private final Map<Long, BotState> usersBotStates = new HashMap<>();
+    private final Map<Long, User> usersProfileData = new HashMap<>();
 
     @Override
     public void setUsersCurrentBotState(long userId, BotState botState) {
@@ -15,5 +19,12 @@ public class UserDataCache implements DataCache{
     @Override
     public BotState getUsersCurrentBotState(long userId) {
         return usersBotStates.get(userId);
+    }
+
+    @Override
+    public User getUserProfileData(long userId) {
+        User user = usersProfileData.getOrDefault(userId, new User(userId));
+        usersProfileData.put(userId, user);
+        return user;
     }
 }

@@ -17,7 +17,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @RequiredArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
     private static final Logger log = LoggerFactory.getLogger(TelegramLongPollingBot.class);
-    private ProducerRequestService producerService;
+    private final ProducerRequestService producerService;
 
     @Value("${telegram.bot-name}")
     private String botUsername;
