@@ -45,10 +45,7 @@ public class BotStateContext {
         return currentMessageHandler.handle(callbackQuery);
     }
 
-
-
     private InputMessageHandler findMessageHandler(BotState currentState, Message message) {
-
         return messageHandlers.get(currentState);
     }
 }

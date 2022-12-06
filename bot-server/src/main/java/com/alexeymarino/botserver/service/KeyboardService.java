@@ -15,7 +15,7 @@ public class KeyboardService {
 
     private final TextMessagesService messagesService;
 
-    public SendMessage setMenu() {
+    public SendMessage setMenu(Long chatId) {
         SendMessage sendMessage = new SendMessage();
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -33,6 +33,8 @@ public class KeyboardService {
         keyboardRowList.add(firstRow);
         keyboardRowList.add(secondRow);
         replyKeyboardMarkup.setKeyboard(keyboardRowList);
+        sendMessage.setText(messagesService.getText("text.start"));
+        sendMessage.setChatId(chatId);
         return sendMessage;
     }
 }

@@ -10,4 +10,9 @@ public interface DataCache {
 
 
     User getUserProfileData(long userId);
+
+
+    Boolean isUserContain(long userId);
+
+    void add(User user);
 }

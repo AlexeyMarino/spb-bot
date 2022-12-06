@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDataCache implements DataCache{
+public class UserDataCache implements DataCache {
     private final Map<Long, BotState> usersBotStates = new HashMap<>();
     private final Map<Long, User> usersProfileData = new HashMap<>();
 
@@ -23,8 +23,16 @@ public class UserDataCache implements DataCache{
 
     @Override
     public User getUserProfileData(long userId) {
-        User user = usersProfileData.getOrDefault(userId, new User(userId));
-        usersProfileData.put(userId, user);
-        return user;
+        return usersProfileData.get(userId);
+    }
+
+    @Override
+    public Boolean isUserContain(long userId) {
+        return usersProfileData.containsKey(userId);
+    }
+
+    @Override
+    public void add(User user) {
+        usersProfileData.put(user.getUserId(), user);
     }
 }
