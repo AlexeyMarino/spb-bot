@@ -31,7 +31,6 @@ public class ServerFacade {
     public void handleUpdate(Update update) {
         List<PartialBotApiMethod<?>> replyMessage = new ArrayList<>();
 
-
         if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
             saveNewUser(callbackQuery.getFrom().getId(), callbackQuery.getFrom().getUserName());
