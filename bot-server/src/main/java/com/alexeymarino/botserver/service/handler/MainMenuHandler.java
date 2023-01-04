@@ -36,7 +36,7 @@ public class MainMenuHandler extends AbstractInputMessageHandler {
         } else if (message.getText().equals(messagesService.getText("button.feedback"))) {
             return getResponseMessage(message, messagesService.getText("text.feedback"), null);
         }
-        return null;
+        return new ResponseMessage();
     }
 
     @Override

@@ -14,10 +14,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class KafkaConsumer {
 
-	private final TelegramBot telegramBot;
+    private final TelegramBot telegramBot;
 
     @KafkaListener(topics = "${topic.response}")
-    public void executeSendMessage(ConsumerRecord<String, ResponseMessage> response) {
+    public void executeResponseMessage(ConsumerRecord<String, ResponseMessage> response) {
+        log.info("ResponseMessageListener. Response: {}", response.value());
         telegramBot.send(response.value());
     }
 }

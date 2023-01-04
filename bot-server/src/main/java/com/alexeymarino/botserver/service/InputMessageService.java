@@ -45,6 +45,7 @@ public class InputMessageService {
     private StateMachine<States, Events> getStateMachine(Long chatId) {
         StateMachine<States, Events> stateMachine = stateMachineFactory.getStateMachine();
         safeStateMachineAction(chatId, persister::restore, stateMachine, RESTORE_ERROR);
+        log.info("Statemachine is in a state {} for the chatId {}", stateMachine.getState(), chatId);
         safeStateMachineAction(chatId, persister::persist, stateMachine, PERSIST_ERROR);
 
         return stateMachine;

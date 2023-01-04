@@ -41,7 +41,7 @@ public class ViewHandlerImpl extends AbstractInputMessageHandler {
             returnMainMenuStateMachine(stateMachine, message);
             return getResponseMessage(message, messagesService.getText("text.menu"), keyboardService.getMainMenu());
         }
-        return null;
+        return new ResponseMessage();
     }
 
     @Override

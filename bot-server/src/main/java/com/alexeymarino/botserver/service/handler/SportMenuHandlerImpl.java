@@ -36,9 +36,9 @@ public class SportMenuHandlerImpl extends AbstractInputMessageHandler {
             return getResponseMessage(message, messagesService.getText("text.open_view"), keyboardService.getFirstPageViewMenu());
         } else if (message.getText().equals(messagesService.getText("button.return_main"))) {
             returnMainMenuStateMachine(stateMachine, message);
-            return getResponseMessage(message, "", keyboardService.getMainMenu());
+            return getResponseMessage(message, messagesService.getText("text.menu"), keyboardService.getMainMenu());
         }
-        return null;
+        return new ResponseMessage();
     }
 
     @Override

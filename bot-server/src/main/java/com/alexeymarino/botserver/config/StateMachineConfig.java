@@ -7,6 +7,7 @@ import com.alexeymarino.botserver.statemachine.Events;
 import com.alexeymarino.botserver.statemachine.States;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
@@ -19,6 +20,7 @@ import static com.alexeymarino.botserver.util.Constants.SELECTED_SPORT;
 
 
 @Configuration
+@Slf4j
 @EnableStateMachineFactory
 @RequiredArgsConstructor
 public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<States, Events> {
@@ -76,6 +78,7 @@ public class StateMachineConfig extends EnumStateMachineConfigurerAdapter<States
                     .getVariables();
             MenuType menuName = (MenuType) variables.get(SELECTED_MENU);
             MenuType sportName = (MenuType) variables.get(SELECTED_SPORT);
+            log.debug("Received parameters: Type - {}, SubType - {}", menuName, sportName);
             variables.put("CONTENT", new ScrollableListWrapper(parserService.getContentList(menuName, sportName)));
         };
     }

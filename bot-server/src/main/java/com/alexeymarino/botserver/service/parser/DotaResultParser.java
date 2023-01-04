@@ -4,6 +4,7 @@ import com.alexeymarino.botserver.model.MenuType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +16,7 @@ import static com.alexeymarino.botserver.model.MenuType.RESULT;
 import static com.alexeymarino.botserver.util.Constants.PAGE_SIZE_5;
 
 @Service
+@Slf4j
 public class DotaResultParser implements Parser {
 
     private final String dotaResults1 = "https://dota2.ru/esport/matches/";
@@ -79,6 +81,7 @@ public class DotaResultParser implements Parser {
         getResultPage(dotaResults1);
         getResultPage(dotaResults2);
         getResultPage(dotaResults3);
+        log.debug("Received a news sheet of the size - {}", result.size());
         return convertToContentList(result, PAGE_SIZE_5);
     }
 

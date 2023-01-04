@@ -5,6 +5,7 @@ import com.alexeymarino.botserver.model.MenuType;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,6 +17,7 @@ import static com.alexeymarino.botserver.model.MenuType.NEWS;
 import static com.alexeymarino.botserver.service.parser.Parsers.NEWS_DOTA;
 import static com.alexeymarino.botserver.util.Constants.PAGE_SIZE_5;
 
+@Slf4j
 @Service
 public class DotaNewsParser implements Parser {
 
@@ -24,6 +26,7 @@ public class DotaNewsParser implements Parser {
 
     public List<String> getContent() {
         List<String> content = parseContent();
+        log.debug("Received a news sheet of the size - {}", content.size());
         if(content.isEmpty()) {
             content.add(CONTENT_PARSE_ERROR);
             throw new ContentParseException(CONTENT_PARSE_ERROR);
@@ -32,7 +35,7 @@ public class DotaNewsParser implements Parser {
     }
 
     private List<String> parseContent() {
-        Document document = null;
+        Document document;
         try {
             document = Jsoup.connect(CYBER_SPORT_DOTA)
                     .userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36")

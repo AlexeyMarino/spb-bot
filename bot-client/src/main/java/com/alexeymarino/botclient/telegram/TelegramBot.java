@@ -47,6 +47,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private <T extends PartialBotApiMethod> void safeExecute(CheckedConsumer<T> executeConsumer, T message) {
         try {
             executeConsumer.accept(message);
+            log.info("TelegramBot. Message has been sent: {}", message);
         } catch (TelegramApiException e) {
             log.error(e.getMessage());
             throw new RuntimeException(e);
